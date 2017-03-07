@@ -1,9 +1,13 @@
 import React from 'react';
-import UserListContainer from './userListContainer'
+import UserListContainer from './userListContainer';
+import NavigationBar from './navigationBar';
 
-const App = () => (
+const App = ({ params }) => (
   <div>
-    <UserListContainer />
+    <NavigationBar />
+    <UserListContainer
+      filter={params.filter || "all"}
+    />
   </div>
 );
 

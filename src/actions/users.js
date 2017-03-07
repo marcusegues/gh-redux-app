@@ -13,7 +13,6 @@ export function fetchUsers() {
     return fetch('https://api.github.com/users?per_page=3')
       .then(response => response.json())
       .then(users => {
-        console.log(users);
         dispatch(receiveUsers(users))
       })
   }

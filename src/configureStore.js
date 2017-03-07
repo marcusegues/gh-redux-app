@@ -9,11 +9,7 @@ const configureStore = () => {
   const persistedState = {
     users: {
       isFetching: false,
-      items: [{
-        name: "Marcus"
-      }, {
-        name: "Ramona"
-      }],
+      items: [],
     }
   }
   const store = createStore(

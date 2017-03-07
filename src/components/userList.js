@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 class UserList extends React.Component {
   constructor(props) {
@@ -6,8 +7,12 @@ class UserList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
+
   handleClick() {
-    this.props.fetchUsers()
+    this.props.fetchUsers();
   }
 
   render() {
@@ -19,7 +24,7 @@ class UserList extends React.Component {
     return (
       <div>
         <div>{users.isFetching ? 'Fetching...' : null}</div>
-        <button onClick={this.handleClick}>{'Fuck yeah'}</button>
+        <Button bsStyle={'primary'} onClick={this.handleClick}>{'Fetch'}</Button>
         <ul>
           {usersArray}
         </ul>
