@@ -7,17 +7,18 @@ class UserList extends React.Component {
   }
 
   handleClick() {
-    console.log("fuck eyah")
+    this.props.fetchUsers()
   }
 
   render() {
     const { users } = this.props;
-    const usersArray = users.map((user, i) => (
-      <li key={i}>{user.name}</li>
+    const usersArray = users.items.map((user, i) => (
+      <li key={i}>{user.login}</li>
       )
     )
     return (
       <div>
+        <div>{users.isFetching ? 'Fetching...' : null}</div>
         <button onClick={this.handleClick}>{'Fuck yeah'}</button>
         <ul>
           {usersArray}

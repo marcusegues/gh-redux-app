@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import users from './users';
 
-const advanonApp = combineReducers({
+const rootReducer = combineReducers({
   users,
 });
 
-export default advanonApp;
+export default rootReducer;

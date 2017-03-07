@@ -1,18 +1,28 @@
-import { createStore } from 'redux';
-import throttle from 'lodash/throttle';
-import advanonApp from './reducers/root';
+import { createStore, applyMiddleware } from 'redux';
 import { loadState, saveState } from './localStorage';
+import throttle from 'lodash/throttle';
+import rootReducer from './reducers/root';
+import thunkMiddleware from 'redux-thunk'
 
 const configureStore = () => {
   // const persistedState = loadState();
   const persistedState = {
-    users: [{
-      name: "Marcus"
-    }, {
-      name: "Ramona"
-    }]
+    users: {
+      isFetching: false,
+      items: [{
+        name: "Marcus"
+      }, {
+        name: "Ramona"
+      }],
+    }
   }
-  const store = createStore(advanonApp, persistedState);
+  const store = createStore(
+    rootReducer,
+    persistedState,
+    applyMiddleware(
+      thunkMiddleware
+    )
+  );
 
   // throttle savingState to cap # of saves to localStorage
   store.subscribe(throttle(() => {
