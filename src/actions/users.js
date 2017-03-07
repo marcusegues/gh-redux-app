@@ -7,10 +7,10 @@ export const receiveUsers = (users) => ({
   users,
 });
 
-export function fetchUsers() {
+export function fetchUsers(id) {
   return function (dispatch) {
     dispatch(requestUsers())
-    return fetch('https://api.github.com/users?per_page=3')
+    return fetch(`https://api.github.com/users?since=${id}`)
       .then(response => response.json())
       .then(users => {
         dispatch(receiveUsers(users))

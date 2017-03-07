@@ -16,17 +16,17 @@ class UserList extends React.Component {
   }
 
   render() {
-    const { users } = this.props;
-    const usersArray = users.items.map((user, i) => (
+    const { users, isFetching } = this.props;
+    const usersList = users.map((user, i) => (
       <li key={i}>{user.login}</li>
       )
     )
     return (
       <div>
-        <div>{users.isFetching ? 'Fetching...' : null}</div>
+        <div>{isFetching ? 'Fetching...' : null}</div>
         <Button bsStyle={'primary'} onClick={this.handleClick}>{'Fetch'}</Button>
         <ul>
-          {usersArray}
+          {usersList}
         </ul>
       </div>
     )

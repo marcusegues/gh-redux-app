@@ -1,28 +1,20 @@
 import { connect } from 'react-redux';
-import UserList from './userList';
+import { withRouter } from 'react-router';
 import { fetchUsers } from './../actions/users';
+import { getVisibleUsers } from './../reducers/root';
+import UserList from './userList';
 
-const getVisibleUsers = (users, filter) => {
-  switch (filter) {
-    case 'all':
-      return users;
-    case 'favorites':
-      return users // need to users.filter(u => u.favorite)
-    default:
-      throw new Error(`Unknown filter: ${filter}.`);
-  }
-}
-
-const mapStateToProps = (state, ownProps) => ({
-  users: state.users,
-  filter: ownProps.filter
+const mapStateToProps = (state, { params }) => ({
+  users: getVisibleUsers(state, params.filter || 'all'),
+  isFetching: state.isFetching,
+  filter: params.filter || 'all',
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers())
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(UserList);
+  mapDispatchToProps,  // could use mapDispatchToProps shorthand notation here: {fetchUsers}
+)(UserList));

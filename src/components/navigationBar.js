@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import FilterLink from './filterLink';
 
 const NavigationBar = () => (
@@ -10,7 +10,6 @@ const NavigationBar = () => (
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
-
     <Navbar.Collapse>
       <Navbar.Text pullRight>
       <FilterLink filter='favorites'>

@@ -2,12 +2,10 @@ import React from 'react';
 import UserListContainer from './userListContainer';
 import NavigationBar from './navigationBar';
 
-const App = ({ params }) => (
+const App = () => (
   <div>
     <NavigationBar />
-    <UserListContainer
-      filter={params.filter || "all"}
-    />
+    <UserListContainer />
   </div>
 );
 
