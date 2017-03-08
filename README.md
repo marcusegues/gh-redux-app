@@ -9,6 +9,6 @@ Features of this project
 - Utilizes browser's localStorage API for persisting specifically the favorited users. The list of all users is not persisted, it is fetched on every refresh.
 - Utilizes selector functions in reducer files to keep knowledge of the state shape where it should be, and not in the view layer
 
-To view locally, clone the repo, run ```npm install``` and ````npm start```.
+To view locally, clone the repo, run ```npm install``` and ```npm start```.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
