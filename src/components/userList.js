@@ -35,13 +35,14 @@ class UserList extends React.Component {
             {isFetching && filter === 'all' ? <Spinner message={"Fetching users..."} /> : null}
           </Col>
           <Col xs={6}>
-            <Button
-              className="pull-right"
-              bsStyle={'primary'}
-              onClick={this.handleRequestUsers}
-            >
-              {'Fetch More Users!'}
-            </Button>
+            {filter === 'all' ?
+              <Button
+                className="pull-right"
+                bsStyle={'primary'}
+                onClick={this.handleRequestUsers}
+              >
+                {'Fetch More Users!'}
+              </Button> : null}
           </Col>
         </Row>
         {usersList}
