@@ -34,5 +34,8 @@
     position: relative;
     left: -1em; } }
 
-.favorited {
+.star-icon {
+  cursor: pointer; }
+
+.star-icon--favorited {
   color: yellow; }

@@ -17,10 +17,11 @@ class UserRowItem extends React.Component {
   render() {
     const { avatarUrl, login } = this.props.user;
     const iconClasses = classNames(
+      'star-icon',
       'material-icons',
       'pull-right',
       {
-        'favorited': this.props.favorited,
+        'star-icon--favorited': this.props.favorited,
       },
     )
 
