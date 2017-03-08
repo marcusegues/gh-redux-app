@@ -1,10 +1,35 @@
+const favorites = (state = [], action) => {
+  switch (action.type) {
+    case 'TOGGLE_USER_IN_FAVORITES':
+      const user = state[action.user.id];
+      if (user) {
+        const newState = {...state};
+        delete newState[action.user.id];
+        return newState
+      } else {
+        const newFavorite = {
+          login: action.user.login,
+          avatarUrl: action.user.avatarUrl,
+        }
+        return {...state, [action.user.id]: newFavorite}
+      }
+    default:
+      return state;
+  }
+}
+
 const users = (state = {
   isFetching: false,
   lastReceivedId: 0,
   items: [],
-  favorites: [],
+  favorites: {},
 }, action) => {
   switch (action.type) {
+    case 'TOGGLE_USER_IN_FAVORITES':
+      return {
+        ...state,
+        favorites: favorites(state.favorites, action)
+      }
     case 'REQUEST_USERS':
       return {...state, isFetching: true}
     case 'RECEIVE_USERS':
@@ -31,4 +56,8 @@ export const getVisibleUsers = (state, filter) => {
     default:
       throw new Error(`Unknown filter: ${filter}.`);
   }
+}
+
+export const isFavorite = (state, user) => {
+  return state.favorites.hasOwnProperty(user.id)
 }

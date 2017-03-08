@@ -11,7 +11,7 @@ const configureStore = () => {
       isFetching: false,
       lastReceivedId: 0,
       items: [],
-      favorites: [],
+      favorites: {},
     }
   }
   const store = createStore(

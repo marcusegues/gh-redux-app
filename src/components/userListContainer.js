@@ -5,7 +5,6 @@ import { getVisibleUsers } from './../reducers/root';
 import UserList from './userList';
 
 const mapStateToProps = (state, { params }) => ({
-  fullState: state,
   users: getVisibleUsers(state, params.filter || 'all'),
   isFetching: state.users.isFetching,
   lastReceivedId: state.users.lastReceivedId,

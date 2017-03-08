@@ -10,3 +10,6 @@ export default rootReducer;
 // Selectors
 export const getVisibleUsers = (state, filter) =>
   fromUsers.getVisibleUsers(state.users, filter);
+
+export const isFavorite = (state, user) =>
+  fromUsers.isFavorite(state.users, user);

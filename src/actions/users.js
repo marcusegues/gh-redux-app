@@ -7,6 +7,12 @@ export const receiveUsers = (users) => ({
   users,
 });
 
+export const addUserToFavorites = (user) => ({
+  type: 'TOGGLE_USER_IN_FAVORITES',
+  user
+})
+
+// Async action creators
 export function fetchUsers(id) {
   return function (dispatch) {
     dispatch(requestUsers())

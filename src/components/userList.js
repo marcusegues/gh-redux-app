@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
-import UserRowItem from './userRowItem';
+import UserRowItemContainer from './userRowItemContainer';
 import './../App.css';
 import { Spinner } from './spinner';
 
@@ -18,21 +18,16 @@ class UserList extends React.Component {
     this.props.fetchUsers(this.props.lastReceivedId);
   }
 
-  // handleAddFavorite(e) {
-  //   console.log(e.target.id)
-  //   // this.props.addFavorite()
-  // }
-
   render() {
     const { users, isFetching } = this.props;
     const usersList = users.map((user, i) => (
-      <UserRowItem
+      <UserRowItemContainer
         key={user.id}
         user={user}
       />
       )
     )
-    
+
     return (
       <Grid>
         <Row className="show-grid header-row flex-container">
