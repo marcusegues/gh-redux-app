@@ -1,5 +1,5 @@
 .user-row {
-
+  margin-bottom: 10px;
 }
 
 .user-row > .user-row__avatar > img {
@@ -19,4 +19,18 @@
 
 .header-row {
   margin-bottom: 10px;
+}
+
+.spinner__message {
+  font-size: 11px;
+}
+
+@media (min-width: 769px) {
+  .spinner__message {
+    font-size: 14px;
+  }
+
+  .user-row {
+    margin-bottom: 20px;
+  }
 }

@@ -8,5 +8,5 @@ export const Spinner = ({ message }) =>
       <div className="bounce2"></div>
       <div className="bounce3"></div>
     </div>
-    <div>{message}</div>
+    <div className="spinner__message">{message}</div>
   </div>

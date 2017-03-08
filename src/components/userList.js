@@ -32,19 +32,18 @@ class UserList extends React.Component {
       />
       )
     )
-    const spinnerMessage = users.length === 0 ? "Fetching users..." : "Fetching more users...";
+    
     return (
       <Grid>
         <Row className="show-grid header-row flex-container">
-          <Col xs={3}>
-            {isFetching ? <Spinner message={spinnerMessage} /> : null}
+          <Col xs={6}>
+            {isFetching ? <Spinner message={"Fetching users..."} /> : null}
           </Col>
-          <Col xs={9}>
+          <Col xs={6}>
             <Button
               className="pull-right"
               bsStyle={'primary'}
               onClick={this.handleRequestUsers}
-              pullRight
             >
               {'Fetch More Users!'}
             </Button>

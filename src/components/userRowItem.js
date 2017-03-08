@@ -7,9 +7,9 @@ class UserRowItem extends React.Component {
     const { avatarUrl, login } = this.props.user;
     return (
       <Row className="show-grid user-row flex-container">
-        <Col xs={2} className='user-row__avatar'><img src={avatarUrl}/></Col>
-        <Col xs={4} className='user-row__login'>{login}</Col>
-        <Col xs={6}><i className="material-icons pull-right">star</i></Col>
+        <Col xs={3} md={2} className='user-row__avatar'><img src={avatarUrl}/></Col>
+        <Col xs={6} md={6} className='user-row__login'>{login}</Col>
+        <Col xs={4} md={4}><i className="material-icons pull-right">star</i></Col>
       </Row>
     );
   }
