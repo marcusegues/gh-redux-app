@@ -1,0 +1,18 @@
+.user-row {
+  background-color: red;
+}
+
+.user-row > .user-row__avatar > img {
+  object-fit: contain;
+  max-width: 100%
+}
+
+.user-row > .user-row__login {
+  font-size: 2em;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
