@@ -1,7 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Row, Col } from 'react-bootstrap';
-import './../App.css';
+import './../static/sass/App.css';
+import './../static/sass/fonts.css';
 
 class UserRowItem extends React.Component {
   constructor(props) {
@@ -25,14 +26,14 @@ class UserRowItem extends React.Component {
 
     return (
       <Row className="show-grid user-row flex-container">
-        <Col xs={3} md={2} className='user-row__avatar'>
+        <Col xs={3} sm={3} className='user-row__avatar'>
           <img
             alt='avatar'
             src={avatarUrl}
           />
         </Col>
-        <Col xs={6} md={6} className='user-row__login'>{login}</Col>
-        <Col xs={4} md={4}>
+        <Col xs={6} sm={5} className='user-row__login'>{login}</Col>
+        <Col xs={4} sm={4}>
           <i
             className={iconClasses}
             onClick={this.handleAddUserToFavorites}

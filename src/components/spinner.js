@@ -1,5 +1,5 @@
 import React from 'react'
-import './../spinner.css'
+import './../static/sass/spinner.css'
 
 // Adapted from /* http://tobiasahlin.com/spinkit/ */
 export const Spinner = ({ message }) =>

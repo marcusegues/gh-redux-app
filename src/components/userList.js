@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import UserRowItemContainer from './userRowItemContainer';
-import './../App.css';
+import './../static/sass/App.css';
 import { Spinner } from './spinner';
 
 class UserList extends React.Component {
