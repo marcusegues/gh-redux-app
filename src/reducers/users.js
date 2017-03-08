@@ -52,7 +52,7 @@ export const getVisibleUsers = (state, filter) => {
     case 'all':
       return state.items;
     case 'favorites':
-      return state // need to users.filter(u => u.favorite)
+      return state.items.filter(u => state.favorites.hasOwnProperty(u.id)) // need to users.filter(u => u.favorite)
     default:
       throw new Error(`Unknown filter: ${filter}.`);
   }

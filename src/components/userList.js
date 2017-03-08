@@ -19,7 +19,7 @@ class UserList extends React.Component {
   }
 
   render() {
-    const { users, isFetching } = this.props;
+    const { users, isFetching, filter } = this.props;
     const usersList = users.map((user, i) => (
       <UserRowItemContainer
         key={user.id}
@@ -32,7 +32,7 @@ class UserList extends React.Component {
       <Grid>
         <Row className="show-grid header-row flex-container">
           <Col xs={6}>
-            {isFetching ? <Spinner message={"Fetching users..."} /> : null}
+            {isFetching && filter === 'all' ? <Spinner message={"Fetching users..."} /> : null}
           </Col>
           <Col xs={6}>
             <Button

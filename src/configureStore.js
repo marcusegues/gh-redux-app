@@ -5,15 +5,8 @@ import rootReducer from './reducers/root';
 import thunkMiddleware from 'redux-thunk'
 
 const configureStore = () => {
-  // const persistedState = loadState();
-  const persistedState = {
-    users: {
-      isFetching: false,
-      lastReceivedId: 0,
-      items: [],
-      favorites: {},
-    }
-  }
+  const persistedState = loadState();
+
   const store = createStore(
     rootReducer,
     persistedState,
@@ -25,7 +18,12 @@ const configureStore = () => {
   // throttle savingState to cap # of saves to localStorage
   store.subscribe(throttle(() => {
     saveState({
-      users: store.getState().users,
+      users: {
+        isFetching: false,
+        lastReceivedId: 0,
+        items: [],
+        favorites: store.getState().users.favorites,
+      }
     });
   }, 1000));
 
