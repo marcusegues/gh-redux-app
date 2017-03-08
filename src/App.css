@@ -1,5 +1,5 @@
 .user-row {
-  background-color: red;
+
 }
 
 .user-row > .user-row__avatar > img {
@@ -15,4 +15,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.header-row {
+  margin-bottom: 10px;
 }
