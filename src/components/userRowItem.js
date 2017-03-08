@@ -22,6 +22,7 @@ class UserRowItem extends React.Component {
       'pull-right',
       {
         'star-icon--favorited': this.props.favorited,
+        'md-dark': !this.props.favorited
       },
     )
 

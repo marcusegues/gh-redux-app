@@ -34,8 +34,11 @@
     position: relative;
     left: -1em; } }
 
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54); }
+
 .star-icon {
   cursor: pointer; }
 
 .star-icon--favorited {
-  color: yellow; }
+  color: rgba(244, 60, 24, 0.54); }
