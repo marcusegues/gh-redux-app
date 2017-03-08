@@ -1,14 +1,18 @@
+export const REQUEST_USERS = 'REQUEST_USERS';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const TOGGLE_USER_IN_FAVORITES = 'TOGGLE_USER_IN_FAVORITES';
+
 export const requestUsers = () => ({
-  type: 'REQUEST_USERS'
+  type: REQUEST_USERS
 });
 
 export const receiveUsers = (users) => ({
-  type: 'RECEIVE_USERS',
+  type: RECEIVE_USERS,
   users,
 });
 
 export const addUserToFavorites = (user) => ({
-  type: 'TOGGLE_USER_IN_FAVORITES',
+  type: TOGGLE_USER_IN_FAVORITES,
   user
 })
 

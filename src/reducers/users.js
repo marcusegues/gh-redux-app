@@ -1,6 +1,8 @@
+import { REQUEST_USERS, RECEIVE_USERS, TOGGLE_USER_IN_FAVORITES } from './../actions/users';
+
 const favorites = (state = [], action) => {
   switch (action.type) {
-    case 'TOGGLE_USER_IN_FAVORITES':
+    case TOGGLE_USER_IN_FAVORITES:
       const user = state[action.user.id];
       if (user) {
         const newState = {...state};
@@ -25,14 +27,14 @@ const users = (state = {
   favorites: {},
 }, action) => {
   switch (action.type) {
-    case 'TOGGLE_USER_IN_FAVORITES':
+    case TOGGLE_USER_IN_FAVORITES:
       return {
         ...state,
         favorites: favorites(state.favorites, action)
       }
-    case 'REQUEST_USERS':
+    case REQUEST_USERS:
       return {...state, isFetching: true}
-    case 'RECEIVE_USERS':
+    case RECEIVE_USERS:
       return {
         ...state,
         items: [...state.items, ...action.users],
