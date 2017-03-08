@@ -5,13 +5,15 @@ import { getVisibleUsers } from './../reducers/root';
 import UserList from './userList';
 
 const mapStateToProps = (state, { params }) => ({
+  fullState: state,
   users: getVisibleUsers(state, params.filter || 'all'),
-  isFetching: state.isFetching,
+  isFetching: state.users.isFetching,
+  lastReceivedId: state.users.lastReceivedId,
   filter: params.filter || 'all',
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: (id) => dispatch(fetchUsers(id))
 });
 
 export default withRouter(connect(

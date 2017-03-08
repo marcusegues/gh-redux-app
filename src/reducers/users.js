@@ -2,6 +2,7 @@ const users = (state = {
   isFetching: false,
   lastReceivedId: 0,
   items: [],
+  favorites: [],
 }, action) => {
   switch (action.type) {
     case 'REQUEST_USERS':

@@ -1,34 +1,46 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Grid, Row, Col } from 'react-bootstrap';
 
 class UserList extends React.Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this);
+    this.handleRequestUsers = this.handleRequestUsers.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchUsers();
+    this.handleRequestUsers();
   }
 
-  handleClick() {
-    this.props.fetchUsers();
+  handleRequestUsers() {
+    this.props.fetchUsers(this.props.lastReceivedId);
+  }
+
+  handleAddFavorite(e) {
+    console.log(e.target.id)
+    // this.props.addFavorite()
   }
 
   render() {
     const { users, isFetching } = this.props;
     const usersList = users.map((user, i) => (
-      <li key={i}>{user.login}</li>
+      <li
+        key={user.id}
+        onClick={this.handleAddFavorite}
+      >
+        {user.login}
+      </li>
       )
     )
     return (
-      <div>
-        <div>{isFetching ? 'Fetching...' : null}</div>
-        <Button bsStyle={'primary'} onClick={this.handleClick}>{'Fetch'}</Button>
+      <Grid>
+        <Row className="show-grid">
+          <Col xs={6}><div>{isFetching ? 'Fetching...' : null}</div></Col>
+          <Col xs={6}><Button bsStyle={'primary'} onClick={this.handleRequestUsers}>{'Fetch'}</Button></Col>
+        </Row>
         <ul>
           {usersList}
         </ul>
-      </div>
+      </Grid>
     )
   }
 }

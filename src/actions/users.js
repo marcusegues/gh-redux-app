@@ -13,7 +13,11 @@ export function fetchUsers(id) {
     return fetch(`https://api.github.com/users?since=${id}`)
       .then(response => response.json())
       .then(users => {
-        dispatch(receiveUsers(users))
+        dispatch(receiveUsers(users.map(user => ({
+          id: user.id,
+          login: user.login,
+          avatarUrl: user.avatar_url,
+        }))))
       })
   }
 }

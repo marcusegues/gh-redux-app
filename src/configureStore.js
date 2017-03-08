@@ -9,7 +9,9 @@ const configureStore = () => {
   const persistedState = {
     users: {
       isFetching: false,
+      lastReceivedId: 0,
       items: [],
+      favorites: [],
     }
   }
   const store = createStore(

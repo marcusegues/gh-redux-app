@@ -4,9 +4,12 @@ import Root from './components/Root';
 import configureStore from './configureStore';
 
 const store = configureStore();
-ReactDOM.render(
-  <Root store={store} />,
-  document.getElementById('root')
-);
+
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDOM.render(
+    <Root store={store} />,
+    document.getElementById('root')
+  );
+});
 
 window.myStore = store;

@@ -10,6 +10,3 @@ export default rootReducer;
 // Selectors
 export const getVisibleUsers = (state, filter) =>
   fromUsers.getVisibleUsers(state.users, filter);
-
-
-window.gvu = getVisibleUsers
