@@ -3,6 +3,7 @@ import { Button, Grid, Row, Col } from 'react-bootstrap';
 import UserRowItemContainer from './userRowItemContainer';
 import './../static/sass/App.css';
 import { Spinner } from './spinner';
+import { ALL } from './../constants/routeConstants';
 
 class UserList extends React.Component {
   constructor(props) {
@@ -32,14 +33,15 @@ class UserList extends React.Component {
       <Grid>
         <Row className="show-grid header-row flex-container">
           <Col xs={6}>
-            {isFetching && filter === 'all' ? <Spinner message={"Fetching users..."} /> : null}
+            {isFetching && filter === ALL ? <Spinner message={"Fetching users..."} /> : null}
           </Col>
           <Col xs={6}>
-            {filter === 'all' ?
+            {filter === ALL ?
               <Button
                 className="pull-right"
                 bsStyle={'primary'}
                 onClick={this.handleRequestUsers}
+                disabled={this.props.isFetching ? true : false}
               >
                 {'Fetch More Users!'}
               </Button> : null}

@@ -1,13 +1,14 @@
 import { REQUEST_USERS, RECEIVE_USERS, TOGGLE_USER_IN_FAVORITES } from './../actions/users';
+import { ALL, FAVORITES } from './../constants/routeConstants';
 
 const favorites = (state = [], action) => {
   switch (action.type) {
     case TOGGLE_USER_IN_FAVORITES:
       const user = state[action.user.id];
       if (user) {
-        const newState = {...state};
-        delete newState[action.user.id];
-        return newState
+        // http://stackoverflow.com/questions/35342355/remove-data-from-nested-objects-without-mutating
+        let { [action.user.id]: deletedItem, ...rest } = state;
+        return rest;
       } else {
         const newFavorite = {
           login: action.user.login,
@@ -51,9 +52,9 @@ export default users;
 // Selectors
 export const getVisibleUsers = (state, filter) => {
   switch (filter) {
-    case 'all':
+    case ALL:
       return state.items;
-    case 'favorites':
+    case FAVORITES:
       return state.items.filter(u => state.favorites.hasOwnProperty(u.id)) // need to users.filter(u => u.favorite)
     default:
       throw new Error(`Unknown filter: ${filter}.`);

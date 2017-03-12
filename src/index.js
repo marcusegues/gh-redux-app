@@ -11,5 +11,3 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('root')
   );
 });
-
-window.myStore = store;

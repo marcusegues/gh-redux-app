@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import FilterLink from './filterLink';
+import { ALL, FAVORITES } from './../constants/routeConstants';
 
 const NavigationBar = () => (
   <Navbar>
@@ -12,12 +13,12 @@ const NavigationBar = () => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Navbar.Text pullRight>
-        <FilterLink filter='favorites'>
+        <FilterLink filter={FAVORITES}>
           Favorites
         </FilterLink>
       </Navbar.Text>
       <Navbar.Text pullRight>
-        <FilterLink filter='all'>
+        <FilterLink filter={ALL}>
           All Users
         </FilterLink>
       </Navbar.Text>

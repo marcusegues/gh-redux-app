@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { ALL, FAVORITES } from './../constants/routeConstants';
 
 const FilterLink = ({ filter, children }) => (
   <Link
-    to={filter === 'all' ? '/' : filter}
+    to={filter === ALL ? '/' : filter}
     activeStyle={{
       textDecoration: 'none',
       color: 'black',
@@ -14,7 +15,7 @@ const FilterLink = ({ filter, children }) => (
 );
 
 FilterLink.propTypes = {
-  filter: PropTypes.oneOf(['all', 'favorites']).isRequired,
+  filter: PropTypes.oneOf([ALL, FAVORITES]).isRequired,
   children: PropTypes.node.isRequired,
 };
 
