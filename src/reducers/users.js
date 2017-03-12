@@ -6,7 +6,6 @@ const favorites = (state = [], action) => {
     case TOGGLE_USER_IN_FAVORITES:
       const user = state[action.user.id];
       if (user) {
-        // http://stackoverflow.com/questions/35342355/remove-data-from-nested-objects-without-mutating
         let { [action.user.id]: deletedItem, ...rest } = state;
         return rest;
       } else {
