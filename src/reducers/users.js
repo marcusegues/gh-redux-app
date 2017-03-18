@@ -1,13 +1,13 @@
 import { REQUEST_USERS, RECEIVE_USERS, TOGGLE_USER_IN_FAVORITES } from './../actions/users';
 import { ALL, FAVORITES } from './../constants/routeConstants';
+import omit from 'lodash/omit';
 
 const favorites = (state = [], action) => {
   switch (action.type) {
     case TOGGLE_USER_IN_FAVORITES:
       const user = state[action.user.id];
       if (user) {
-        let { [action.user.id]: deletedItem, ...rest } = state;
-        return rest;
+        return omit(state, [action.user.id]);
       } else {
         const newFavorite = {
           login: action.user.login,
