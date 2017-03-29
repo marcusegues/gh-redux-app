@@ -1,26 +1,85 @@
 import { REQUEST_USERS, RECEIVE_USERS, TOGGLE_USER_IN_FAVORITES } from './../actions/users';
+import { combineReducers } from 'redux';
 import { ALL, FAVORITES } from './../constants/routeConstants';
-import omit from 'lodash/omit';
 
-const favorites = (state = {}, action) => {
+
+const favorites = (state = new Set([]), action) => {
   switch (action.type) {
     case TOGGLE_USER_IN_FAVORITES:
-      const user = state[action.user.id];
+      const user = state.has[action.user.id];
+      const newState = new Set([...state]);
       if (user) {
-        return omit(state, [action.user.id]);
+        return newState.delete(action.user.id);
       } else {
-        const newFavorite = {
-          login: action.user.login,
-          avatarUrl: action.user.avatarUrl,
-        }
-        return {...state, [action.user.id]: newFavorite}
+        return newState.add(action.user.id);
       }
     default:
       return state;
   }
 }
 
-const users = (state = {
+// ----------
+const byId = (state = {}, action) => {
+  switch (action.type) {
+    case RECEIVE_USERS:
+      const nextState = { ...state };
+      action.users.forEach(user => {
+        nextState[user.id] = user;
+      });
+      return nextState;
+    default:
+      return state;
+  }
+};
+
+
+const getUser = (state, id) => state[id];
+// ----------
+
+
+const allIds = (state = [], action) => {
+  switch (action.type) {
+    case RECEIVE_USERS:
+      return [...state, ...action.users.map(user => user.id)];
+    default:
+      return state;
+  }
+};
+
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+    case REQUEST_USERS:
+      return true;
+    case RECEIVE_USERS:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const lastReceivedId = (state = 0, action) => {
+  switch (action.type) {
+    case RECEIVE_USERS:
+      return {
+        ...state,
+        lastReceivedId: action.users[action.users.length - 1].id
+      }
+    default:
+      return state;
+  }
+};
+
+const users = combineReducers({
+  byId,
+  allIds,
+  isFetching,
+  lastReceivedId,
+  favorites
+});
+
+export default users;
+
+const users1 = (state = {
   isFetching: false,
   lastReceivedId: 0,
   items: [],
@@ -46,15 +105,21 @@ const users = (state = {
   }
 };
 
-export default users;
+
+
+const getAllUsers = (state) => {
+  return state.allIds.map(id => state.byId[id]);
+}
 
 // Selectors
 export const getVisibleUsers = (state, filter) => {
+  const allUsers = getAllUsers(state);
+  debugger;
   switch (filter) {
     case ALL:
-      return state.items;
+      return allUsers;
     case FAVORITES:
-      return state.items.filter(u => state.favorites.hasOwnProperty(u.id)) // need to users.filter(u => u.favorite)
+      return allUsers.filter(u => state.favorites.hasOwnProperty(u.id))
     default:
       throw new Error(`Unknown filter: ${filter}.`);
   }
