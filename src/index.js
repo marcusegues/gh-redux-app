@@ -11,3 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('root')
   );
 });
+
+window.store = store;

@@ -2,7 +2,7 @@ import { REQUEST_USERS, RECEIVE_USERS, TOGGLE_USER_IN_FAVORITES } from './../act
 import { ALL, FAVORITES } from './../constants/routeConstants';
 import omit from 'lodash/omit';
 
-const favorites = (state = [], action) => {
+const favorites = (state = {}, action) => {
   switch (action.type) {
     case TOGGLE_USER_IN_FAVORITES:
       const user = state[action.user.id];

@@ -1,3 +1,5 @@
+import * as api from '../api';
+
 export const REQUEST_USERS = 'REQUEST_USERS';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const TOGGLE_USER_IN_FAVORITES = 'TOGGLE_USER_IN_FAVORITES';
@@ -6,7 +8,7 @@ export const requestUsers = () => ({
   type: REQUEST_USERS
 });
 
-export const receiveUsers = (users) => ({
+const receiveUsers = (users) => ({
   type: RECEIVE_USERS,
   users,
 });
@@ -17,17 +19,34 @@ export const addUserToFavorites = (user) => ({
 })
 
 // Async action creators
-export function fetchUsers(id) {
-  return function (dispatch) {
-    dispatch(requestUsers())
-    return fetch(`https://api.github.com/users?since=${id}`)
+
+// This one works with redux-thunk
+export const fetchUsers = id => {
+  return (dispatch) => {
+    dispatch(requestUsers())  // update app state to inform that API call is starting
+    return api.fetchUsers(id)  // promise
       .then(response => response.json())
       .then(users => {
-        dispatch(receiveUsers(users.map(user => ({
+        dispatch(receiveUsers(users.map(user => ({  // update state with results of API call
           id: user.id,
           login: user.login,
           avatarUrl: user.avatar_url,
         }))))
-      })
+      })  // we should probably also handle errors in the network
   }
 }
+
+
+// export const fetchUsers = id =>
+//   api.fetchUsers(id)
+//     .then(response => response.json())
+//     .then(users =>
+//       receiveUsers(users.map(user => ({  // update state with results of API call
+//         id: user.id,
+//         login: user.login,
+//         avatarUrl: user.avatar_url,
+//       })))
+//     )
+
+
+window.fetchUsers = fetchUsers;
