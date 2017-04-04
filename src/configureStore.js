@@ -1,13 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
-import throttle from 'lodash/throttle';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/root';
 import thunkMiddleware from 'redux-thunk'
 
 const configureStore = () => {
   const store = createStore(
     rootReducer,
-    applyMiddleware(
-      thunkMiddleware
+    composeWithDevTools(
+      applyMiddleware(
+        thunkMiddleware
+      )
     )
   );
 

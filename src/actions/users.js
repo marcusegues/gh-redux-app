@@ -8,7 +8,7 @@ export const requestUsers = () => ({
   type: REQUEST_USERS
 });
 
-const receiveUsers = (users) => ({
+export const receiveUsers = (users) => ({
   type: RECEIVE_USERS,
   users,
 });
@@ -21,12 +21,13 @@ export const addUserToFavorites = (user) => ({
 // Async action creators
 
 // This one works with redux-thunk
-export const fetchUsers = id => {
+export const fetchUsers = lastReceivedId => {
   return (dispatch) => {
     dispatch(requestUsers())  // update app state to inform that API call is starting
-    return api.fetchUsers(id)  // promise
+    return api.fetchUsers(lastReceivedId)  // promise
       .then(response => response.json())
       .then(users => {
+        debugger
         dispatch(receiveUsers(users.map(user => ({  // update state with results of API call
           id: user.id,
           login: user.login,
@@ -35,18 +36,3 @@ export const fetchUsers = id => {
       })  // we should probably also handle errors in the network
   }
 }
-
-
-// export const fetchUsers = id =>
-//   api.fetchUsers(id)
-//     .then(response => response.json())
-//     .then(users =>
-//       receiveUsers(users.map(user => ({  // update state with results of API call
-//         id: user.id,
-//         login: user.login,
-//         avatarUrl: user.avatar_url,
-//       })))
-//     )
-
-
-window.fetchUsers = fetchUsers;
