@@ -13,8 +13,9 @@ const rootReducer = combineReducers({
 export default rootReducer;
 
 // Selectors
-export const getVisibleUsers = (state, filter) =>
-  fromUsers.getVisibleUsers(state.users, filter);
+export const getVisibleUsers = (state, filter) => {
+  return fromUsers.getVisibleUsers(state.users, filter);
+}
 
 export const getUserById = (state, id) =>
   fromUsers.getUserById(state.users, id);

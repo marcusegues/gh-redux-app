@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 import './../static/sass/App.css';
 import './../static/sass/fonts.css';
 
@@ -34,7 +35,13 @@ class UserRowItem extends React.Component {
             src={avatarUrl}
           />
         </Col>
-        <Col xs={6} sm={5} className='user-row__login'>{login}</Col>
+        <Col xs={6} sm={5} className='user-row__login'>
+          <Link
+            to={`users/${login}`}
+          >
+            {login}
+          </Link>
+        </Col>
         <Col xs={4} sm={4}>
           <i
             className={iconClasses}

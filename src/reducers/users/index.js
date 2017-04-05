@@ -27,7 +27,7 @@ export const getVisibleUsers = (state, filter) => {
     case ALL:
       return allUsers;
     case FAVORITES:
-      return allUsers.filter(u => state.favorites.hasOwnProperty(u.id))
+      return allUsers.filter(u => (state.favorites.indexOf(u.id) !== -1))
     default:
       throw new Error(`Unknown filter: ${filter}.`);
   }

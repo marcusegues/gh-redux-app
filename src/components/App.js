@@ -1,12 +1,13 @@
 import React from 'react';
-import UserListContainer from './userListContainer';
 import NavigationBar from './navigationBar';
 
-const App = () => (
-  <div>
-    <NavigationBar />
-    <UserListContainer />
-  </div>
-);
+const App = (props) => {
+  return (
+    <div>
+      <NavigationBar />
+      {props.children}
+    </div>
+  );
+}
 
 export default App;

@@ -23,12 +23,15 @@ class UserProfileContainer extends React.Component {
   }
 
   render() {
-    return <UserProfile {...this.props} />;
+    return (
+      <div>
+        <UserProfile {...this.props} />;
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state, { params }) => {
-  debugger;
   return {
     login: params.login,
     user: getUserByLogin(state, params.login)
