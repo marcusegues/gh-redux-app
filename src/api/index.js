@@ -1,7 +1,8 @@
-export const fetchUsers = lastReceivedId => {
-  debugger
-  return fetch(`https://api.github.com/users?since=${lastReceivedId}`)
-}
+export const fetchUsers = lastReceivedId =>
+  fetch(`https://api.github.com/users?since=${lastReceivedId}`)
+
+  export const fetchUser = login =>
+    fetch(`https://api.github.com/users/${login}`)
 
 export const fetchRepos = login =>
   fetch(`https://api.github.com/users/${login}/repos`)

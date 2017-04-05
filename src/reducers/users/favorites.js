@@ -3,10 +3,11 @@ import { TOGGLE_USER_IN_FAVORITES } from '../../actions/users';
 const favorites = (state = [], action) => {
   switch (action.type) {
     case TOGGLE_USER_IN_FAVORITES:
-      const user = state.has[action.user.id];
       const newState = new Set([...state]);
+      const user = newState.has(action.user.id);
       if (user) {
-        return [...newState.delete(action.user.id)];
+        newState.delete(action.user.id);
+        return [...newState];
       } else {
         return [...newState.add(action.user.id)];
       }
@@ -16,3 +17,7 @@ const favorites = (state = [], action) => {
 }
 
 export default favorites;
+
+export const isFavorite = (state, user) => {
+  return (state.indexOf(user.id) !== -1)
+}

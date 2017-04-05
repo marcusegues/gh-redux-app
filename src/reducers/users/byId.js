@@ -35,5 +35,3 @@ const byId = (state = {}, action) => {
 };
 
 export default byId;
-
-export const getUser = (state, id) => state[id];

@@ -31,5 +31,3 @@ export const fetchRepos = user => {
       })  // we should probably also handle errors in the network
   }
 }
-
-window.fetchRepos = fetchRepos;

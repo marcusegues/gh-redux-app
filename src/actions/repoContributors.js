@@ -37,11 +37,8 @@ export const fetchRepoContributors = (login, repo) => {
           repoId: repo.id,
           userId: c.id,
         }));
-        debugger;
         dispatch(receiveUsers(contributors));
         dispatch(receiveRepoContributors(repoContributors));
       })  // we should probably also handle errors in the network
   }
 }
-
-window.fetchRepoContributors = fetchRepoContributors;
