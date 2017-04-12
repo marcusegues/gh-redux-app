@@ -10,3 +10,7 @@ const repos = combineReducers({
 });
 
 export default repos;
+
+// Selectors
+export const getUserRepos = (state, repoIds) =>
+  repoIds.map(id => state.byId[id]);

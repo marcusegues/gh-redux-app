@@ -1,16 +1,19 @@
 import React from 'react';
-import './../static/sass/App.css';
-import './../static/sass/fonts.css';
+import { Grid } from 'react-bootstrap';
 import UserRowItemContainer from './userRowItemContainer';
 
-const UserProfile = ({ user }) => {
-  const d = user ?
-    <UserRowItemContainer
-      key={user.id}
-      user={user}
-    /> : null;
+const UserProfile = ({ user, repos }) => {
+  // repos = repos.map(r => <RepoRowItem)
+  const userRow = user ?
+    <Grid>
+      <UserRowItemContainer
+        key={user.id}
+        user={user}
+      />
+    </Grid> : null
+
   return (
-    d
+    userRow
   );
 }
 

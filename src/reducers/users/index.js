@@ -36,7 +36,6 @@ export const getVisibleUsers = (state, filter) => {
 export const getUserById = (state, id) =>
   state.byId[id];
 
-
 export const getUserByLogin = (state, login) => {
   return Object.values(state.byId).find(u => u.login === login);
 }
