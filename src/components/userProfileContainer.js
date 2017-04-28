@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import UserProfile from './userProfile';
+import RepoList from './repoList';
 import { getUserByLogin, getUserRepos } from './../reducers/root';
 import { fetchUser } from './../actions/users';
 import { fetchRepos } from './../actions/repos';
@@ -14,18 +15,14 @@ class UserProfileContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.checkUserPresent().then(this.handleRequestRepos());
-  }
-
-  componentDidUpdate() {
-    this.checkUserPresent().then(this.handleRequestRepos());
+    this.checkUserPresent().then(this.handleRequestRepos);
   }
 
   checkUserPresent() {
     const {user, login, fetchUser } = this.props;
     return new Promise((resolve, reject) => {
       if (!user) {
-        fetchUser(login).then(resolve());
+        fetchUser(login).then(resolve);
       } else {
         resolve();
       }
@@ -41,6 +38,7 @@ class UserProfileContainer extends React.Component {
     return (
       <div>
         <UserProfile {...this.props} />
+        <RepoList repos={this.props.repos} />
       </div>
     );
   }

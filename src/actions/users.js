@@ -21,33 +21,35 @@ export const addUserToFavorites = (user) => ({
 // Async action creators
 
 // This one works with redux-thunk
-export const fetchUsers = lastReceivedId => {
-  return (dispatch) => {
-    dispatch(requestUsers())  // update app state to inform that API call is starting
+export const fetchUsers = lastReceivedId =>
+  (dispatch) => {
+    dispatch(requestUsers());  // update app state to inform that API call is starting
     return api.fetchUsers(lastReceivedId)  // promise
       .then(response => response.json())
-      .then(users => {
+      .then(users =>
         dispatch(receiveUsers(users.map(user => ({  // update state with results of API call
           id: user.id,
           login: user.login,
           avatarUrl: user.avatar_url,
-        }))))
-      })  // we should probably also handle errors in the network
-  }
-}
+        })))),
+      ); // we should probably also handle errors in the network
+  };
 
-export const fetchUser = login => {
+
+export const fetchUser = (login) => {
   return (dispatch) => {
     dispatch(requestUsers())  // update app state to inform that API call is starting
     return api.fetchUser(login)  // promise
       .then(response => response.json())
       .then(user => {
         const { id, login, avatar_url } = user;
-        dispatch(receiveUsers([{
+        const newUser = {
           id,
           login,
-          avatarUrl: avatar_url,
-        }]))
+          avatarUrl: avatar_url
+        };
+        dispatch(receiveUsers([newUser]));
+        return newUser;
       })  // we should probably also handle errors in the network
   }
 }
