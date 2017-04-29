@@ -1,4 +1,4 @@
-import { RECEIVE_REPO_CONTRIBUTORS, REQUEST_REPO_CONTRIBUTORS } from '../../actions/repoContributors';
+import { RECEIVE_REPO_CONTRIBUTORS, REQUEST_REPO_CONTRIBUTORS } from '../../actions/repos';
 
 const isFetching = (state = false, action) => {
   switch (action.type) {

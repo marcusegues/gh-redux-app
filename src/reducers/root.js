@@ -8,7 +8,7 @@ import repoContributors from './repoContributors/index';
 const rootReducer = combineReducers({
   users,
   repos,
-  repoContributors
+  repoContributors,
 });
 
 export default rootReducer;

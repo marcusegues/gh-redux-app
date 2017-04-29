@@ -11,6 +11,7 @@ const Root = ({ store }) => (
       <Route component={App} >
         <Route path="/(:filter)" component={UserListContainer} />
         <Route path="/users/(:login)" component={UserProfileContainer} />
+        <Route path="/repos/(:repo)" component={UserProfileContainer} />
       </Route>
     </Router>
   </Provider>
